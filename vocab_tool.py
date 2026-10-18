@@ -26,13 +26,15 @@ def count_by_pos(words):
     return d
 
 
-def gen_exercises(words, out=None):
-    # 产物统一落到代码包根目录：否则"从哪个目录运行"决定了文件落在哪，
-    # 与 README 的"任意目录运行"承诺冲突，且散落的产物 .gitignore 拦不住。
+def gen_exercises(words, out=None):  # ④ 写
     out = out or weekpath.root_path("练习.txt")
     with open(out, "w", encoding="utf-8") as f:
         for w in words:
+            # 原来完整题目
             f.write("用“%s”造一个句子。（%s）\n" % (w["词汇"], w["词性"]))
+            # 新增：挖空填空题
+            f.write("用____造一个句子。（%s：%s）\n\n" % (w["词性"], w["词汇"]))
+
 
 # 作业2新增：生成填空题，把目标词替换成____
 def make_fill_blank(sentence, target_word):
